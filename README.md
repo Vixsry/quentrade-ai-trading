@@ -32,7 +32,7 @@ Quentrade adalah terminal trading cryptocurrency berbasis AI yang canggih, diran
 
 1. Clone repository:
 ```bash
-git clone https://github.com/yourusername/quentrade.git
+https://github.com/Vixsry/quentrade-ai-trading.git
 cd quentrade
 ```
 
