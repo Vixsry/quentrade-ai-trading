@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  quentrade:
+    build: .
+    container_name: quentrade
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TZ=UTC
+    volumes:
+      - ./models:/app/models
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - ./strategies:/app/strategies
+      - ./backtest_results:/app/backtest_results
+      - ./.env:/app/.env
+      - ./config.ini:/app/config.ini
+    network_mode: host
+    tty: true
+    stdin_open: true
+    
+  quentrade-monitor:
+    build: .
+    container_name: quentrade-monitor
+    restart: unless-stopped
+    command: python quentrade_monitor.py
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TZ=UTC
+    volumes:
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+      - ./quentrade.db:/app/quentrade.db:ro
+    network_mode: host
+    depends_on:
+      - quentrade
+    
+  backup:
+    image: alpine
+    container_name: quentrade-backup
+    volumes:
+      - ./models:/app/models:ro
+      - ./data:/app/data:ro
+      - ./backups:/backups
+    command: >
+      sh -c "while true; do
+        tar -czf /backups/quentrade_backup_$$(date +%Y%m%d_%H%M%S).tar.gz /app/models /app/data;
+        find /backups -name 'quentrade_backup_*.tar.gz' -mtime +7 -delete;
+        sleep 86400;
+      done"
+    restart: unless-stopped
+
+volumes:
+  models:
+  logs:
+  data:
+  strategies:
+  backtest_results:
+  backups:
