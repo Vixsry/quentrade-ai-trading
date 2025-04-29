@@ -170,4 +170,4 @@ Quentrade adalah alat bantu trading dan bukan jaminan profit. Selalu lakukan ris
 
 ---
 
-Dibuat dengan ❤️ oleh Tim Quentrade
+Dibuat dengan ❤️ oleh Vixsry
