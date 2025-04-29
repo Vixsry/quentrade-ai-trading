@@ -1,6 +1,6 @@
 # Quentrade - AI Machine Learning Trading Terminal
 
-![Quentrade Banner](https://via.placeholder.com/800x200?text=Quentrade+AI+Trading+Terminal)
+![Quentrade Banner](quentrade/logo/quentrade.svg)
 
 Quentrade adalah terminal trading cryptocurrency berbasis AI yang canggih, dirancang untuk berjalan di CLI Linux. Terminal ini menggabungkan analisis fundamental, sentimen pasar, data on-chain, dan indikator ekonomi makro untuk menghasilkan sinyal trading yang akurat.
 
